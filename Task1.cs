@@ -15,8 +15,8 @@ public class Task1 : MonoBehaviour
     public int numOfQuizzes;
     public int numOfAssignments;
     public bool profTaughtCourse;
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +26,13 @@ public class Task1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void calculateDifficulty()
     {
         // calculating difficulty numbers based on number of each activity and its respective difficulty weight
-        double moduleWeight = numOfModules * 0.15;         
+        double moduleWeight = numOfModules * 0.15;
         double readingMaterialsWeight = numOfReadingMaterials * 0.30;
         double quizWeight = numOfQuizzes * 0.15;
         double assignmentWeight = numOfAssignments * 0.30;
@@ -44,15 +44,23 @@ public class Task1 : MonoBehaviour
             {
                 challengeScore = 10;
             }
+            if (challengeScore < 1)
+            {
+                challengeScore = 1;
+            }
             Debug.Log("The difficulty for the course: " + nameOfCourse + " is " + challengeScore);
         }
         else if (profTaughtCourse == false) // if the professor has not taught the course, an additional 10% gets added to the difficulty score of the course and the name 
                                             // of the course and its difficulty is displayed
-        { 
+        {
             double challengeScore = moduleWeight + readingMaterialsWeight + quizWeight + assignmentWeight * 1.10;
             if (challengeScore > 10)
             {
                 challengeScore = 10;
+            }
+            if (challengeScore < 1)
+            {
+                challengeScore = 1;
             }
             Debug.Log("The difficulty for the course: " + nameOfCourse + " is " + challengeScore);
 
